@@ -1,0 +1,25 @@
+.flashes {
+    list-style-type: none;
+}
+
+
+form.new {
+    width: 50%;
+    margin: auto;
+}
+
+.new .form-control {
+    margin-bottom: 1rem;
+}
+
+.container {
+    margin: auto;
+}
+
+#events li {
+    max-height: 20rem;
+}
+
+#events img {
+    max-width: 35rem;
+}
