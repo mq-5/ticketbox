@@ -14,3 +14,5 @@ class Event(db.Model):
     venue_address = db.Column(db.String, nullable=False)
     organizer_id = db.Column(db.Integer, db.ForeignKey(
         'organizers.id'))
+    ticket_types = db.relationship(
+        'TicketType', backref='event', lazy=True, cascade="all,delete")

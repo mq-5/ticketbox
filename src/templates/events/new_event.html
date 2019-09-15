@@ -1,15 +1,15 @@
 {% extends 'base.html' %} {% block content %}
-<form method="POST">
+<h1 class="header" >New Event</h1>
+<form method="POST" class="new">
     {{ form.hidden_tag() }}
-    {{form.name.label}} {{ form.name }}
-    {{form.description.label}} {{ form.description }}
-    {{form.date.label}} {{ form.date }}
-    {{form.time.label}} {{ form.time }}
-    {{form.image_url.label}} {{ form.image_url }}
-    {{form.price.label}} {{ form.price }}
-    {{form.city.label}} {{ form.city }}
-    {{ form.address.label }} {{ form.address }}
-    {{ form.submit }}
+    {{form.name.label}} {{ form.name(class_='form-control') }}
+    {{form.description.label}} {{ form.description(class_='form-control') }}
+    {{form.date.label}} {{ form.date(class_='form-control') }}
+    {{form.time.label}} {{ form.time(class_='form-control') }}
+    {{ form.address.label }} {{ form.address(class_='form-control') }}
+    {{form.city.label}} {{ form.city(class_='form-control') }}
+    {{form.image_url.label}} {{ form.image_url(class_='form-control') }}
+    {{ form.submit(class_='btn') }}
 </form>
 
 {% endblock %}

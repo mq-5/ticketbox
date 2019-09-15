@@ -15,7 +15,7 @@ class SignUp(FlaskForm):
                              DataRequired('Please enter password')])
     password_cf = PasswordField("Re-enter Password", validators=[
         DataRequired(), EqualTo('password', message='Passwords not matching')])
-    is_org = BooleanField('This is an organization')
+    is_org = BooleanField('Sign up for an organization')
     submit = SubmitField('Sign Up')
 
     def validate_email(self, field):

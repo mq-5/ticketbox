@@ -1,23 +1,31 @@
 {% extends 'base.html' %} {% block content%}
 
-<h1>Upcoming Events</h1>
+<h1 class="header" >Upcoming Events</h1>
 <ul id="events">
 	{% for event in events %}
 	<li style="list-style-type: none; padding: 1rem" class="row">
-		<div class="card mb-3" style="width: 100%">
-			<div class="row no-gutters">
-				<div class="col-md-4">
-					<img src={{event.image_url}} class="card-img-top" alt="...">
-				</div>
-				<div class="col-md-8">
-					<div class="card-body">
-						<h5 class="card-title">{{ event.name }}</h5>
-						<p class="card-text">{{ event.description }}</p>
-						<p class="card-text">{{ event.time }}</p>
-						<p class="card-text">{{ event.venue_address }} {{ event.venue_city }}</p>
-						<small class="text-muted">{{ event.organizer.company_name}}</small>
+		<div class="card" style="width: 30rem;">
+			<img src="{{event.image_url}}" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title font-weight-bold ">
+					<a href="{{ url_for('events.view', id=event.id) }}" style="color: #326273">{{ event.name }}</a>
+				</h5>
+				<hr>
+				<div class="row">
+					<div class="col-10">
+						<h4 class="badge badge-secondary"><i class="fa fa-map-marker" aria-hidden="true"></i>
+							{{ event.venue_city }}</h4>
+						<p style="color: #326273">by {{ event.organizer.name}}
+						</p>
+					</div>
+					<div class="col-2 text-center calendar">
+						<p style="background-color: tomato; width: 100%; font-size: 14px; color: white">
+							{{ event.time.strftime("%B")}}</p>
+						<p style="font-size: 20px; margin: 0"> {{ event.time.strftime("%d")}}</p>
+						<p style="font-size: 12px;"> {{ event.time.strftime("%A")}}</p>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</li>

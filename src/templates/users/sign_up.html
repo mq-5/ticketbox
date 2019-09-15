@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Sign Up</h1>
+<h1 class="header" >Sign Up</h1>
 <form method="POST" class="new">
     {{ form.hidden_tag() }}
     {{form.first_name.label}} {{ form.first_name(class_='form-control') }}
@@ -7,9 +7,9 @@
     {{form.email.label}} {{ form.email(class_='form-control') }}
     {{form.password.label}} {{ form.password(class_='form-control') }}
     {{ form.password_cf.label }} {{ form.password_cf(class_='form-control') }}
-    {{ form.is_org(class_='') }} {{form.is_org.label}}
+    {{ form.is_org }} {{form.is_org.label}}
     <br>
-    {{ form.submit(class_='btn btn-info') }}
+    {{ form.submit(class_='btn') }}
 </form>
 
 {% endblock %}

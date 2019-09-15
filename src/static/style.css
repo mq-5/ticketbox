@@ -1,3 +1,58 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Basic', sans-serif;
+    color: #254854;
+}
+
+p {
+    margin-bottom: 0.2rem !important;
+}
+
+nav * {
+    color: white;
+}
+
+.new .btn,
+.new button {
+    background-color: #326273 !important;
+    color: white !important;
+    margin-top: 1rem;
+}
+
+.header {
+    text-align: center;
+    margin: 3rem;
+}
+
+.prim {
+    /* background-color: #D39477 !important; */
+    background-color: rgb(231, 112, 91) !important;
+    color: white !important;
+}
+
+a.prim:hover,
+button.prim:hover {
+    background-color: rgb(184, 95, 79) !important;
+}
+
+.sec {
+    background-color: #D6E6EA !important;
+    color: #254854 !important;
+}
+
+a.sec:hover,
+button.sec:hover {
+    background-color: #97B8BF !important;
+}
+
 .flashes {
     list-style-type: none;
 }
@@ -16,10 +71,36 @@ form.new {
     margin: auto;
 }
 
+#events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 #events li {
-    max-height: 20rem;
+    /* max-height: 20rem; */
 }
 
 #events img {
-    max-width: 35rem;
+    height: 16rem;
+}
+
+.calendar {
+    font-weight: bolder;
+    border: 1px solid lightgray;
+    padding: 0 !important;
+    border-radius: 10%;
+    height: 90px;
+    width: 86px;
+}
+
+#nav-description,
+#nav-organizer,
+#nav-tickets {
+    width: 800px;
+    overflow: visible;
+}
+
+#nav-organizer img {
+    max-width: 80%;
 }

@@ -1,5 +1,4 @@
 from src import db
-# from src.models import Users
 
 
 class Ticket(db.Model):

@@ -1,10 +1,11 @@
 {% extends 'base.html' %} {% block content %}
-<form method="POST">
+<h1 class="header" >Ticket Type</h1>
+<form method="POST" class="new">
     {{ form.hidden_tag() }}
-    {{form.name.label}} {{ form.name }}
-    {{form.price.label}} {{ form.price }}
-    {{ form.quantity.label }} {{ form.quantity }}
-    {{ form.submit }}
+    {{form.name.label}} {{ form.name(class_='form-control') }}
+    {{form.price.label}} {{ form.price(class_='form-control') }}
+    {{ form.quantity.label }} {{ form.quantity(class_='form-control') }}
+    {{ form.submit(class_='btn') }}
 </form>
 
 {% endblock %}

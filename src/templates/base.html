@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Basic|Lato&display=swap" rel="stylesheet">
 
 </head>
 
@@ -16,8 +17,9 @@
     {% include 'include/_navbar.html' %}
     {% include 'include/_flashes.html' %}
     <div id="content" class="container">
-        {% block content %}{% endblock %}</div>
-    <div id="footer">
+        {% block content %}
+        <h1 class="header" >Hello</h1>{% endblock %}</div>
+    <div id="footer" class="text-center my-5">
         {% block footer %}
         &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
         {% endblock %}

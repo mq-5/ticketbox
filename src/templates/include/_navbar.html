@@ -1,36 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #326273;">
+    <a class=" navbar-brand" href="{{ url_for('home') }}">Ticketbox</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    <i class="fa fa-map-marker mx-2" aria-hidden="true"></i> Choose location
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
+                    <a class="dropdown-item" href="#">Ha Noi</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Others</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+            <input class="form-control mr-sm-2 ml-3" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn my-2 my-sm-0 sec" type="submit">Search</button>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            {% if current_user.is_authenticated %}
+            {% if current_user.is_org %}
+            <a href="{{ url_for('events.new_event') }}" class="prim btn mx-2">Create Event</a>
+            {% endif %}
+            <a href="{{ url_for('users.logout') }}" class="btn sec mx-2">Log Out</a>
+            {% else %}
+            <a href="{{ url_for('users.login_u') }}" class="btn sec mx-2">Log In</a>
+            <a href="{{ url_for('users.sign_up') }}" class="btn prim mx-2">Sign Up</a>
+            {% endif %}
         </form>
     </div>
 </nav>
