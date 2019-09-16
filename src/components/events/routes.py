@@ -15,7 +15,7 @@ events_blueprint = Blueprint('events',
 
 @events_blueprint.route('/upcoming')
 def upcoming():
-    events = Event.query.all()
+    events = Event.query.filter(Event.time > datetime.now()).all()
     return render_template('list.html', events=events)
 
 
@@ -85,19 +85,29 @@ def view(id):
     return redirect(url_for('home'))
 
 
-@events_blueprint.route('/purchase-ticket/<id>')
+@events_blueprint.route('/purchase-ticket/<id>', methods=['POST', 'GET'])
+@login_required
 def purchase_ticket(id):
-    ticket_type = TicketType.query.get(int(id))
-    if ticket_type is not None:
-        ticket = Ticket(user_id=current_user.id,
-                        ticket_type_id=id)
-        if ticket_type.is_available():
-            db.session.add(ticket)
-            db.session.commit()
-            flash('Successful order')
-        else:
-            flash('Oops! Tickets sold out', 'danger')
-        return redirect(url_for('events.view', id=ticket_type.event.id))
+    event = Event.query.get(int(id))
+    if event is not None:
+        if request.method == 'POST':
+            for ticket_type in event.ticket_types:
+                quantity = int(request.form[str(ticket_type.id)])
+                if quantity <= ticket_type.get_available() and quantity <= 10 and quantity >= 0:
+                    for i in range(quantity):
+                        ticket = Ticket(user_id=current_user.id,
+                                        ticket_type_id=ticket_type.id)
+                        if ticket_type.is_available():
+                            db.session.add(ticket)
+                            db.session.commit()
+                        else:
+                            flash(
+                                f'Oops! Ticket {ticket_type.name} is sold out', 'danger')
+                            break
+                else:
+                    flash('Quantity not valid', 'danger')
+        return render_template('purchase.html', event=event)
+        # return redirect(url_for('events.view', id=ticket_type.event.id))
     else:
-        flash('Ticket not exist', 'danger')
+        flash('Event not exist', 'danger')
     return redirect(url_for('home'))

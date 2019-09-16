@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content%}
+<h2 class="header">Purchase ticket - {{ event.name }}</h2>
+<form method="POST" class="text-center">
+    <div class="row my-2">
+        <p class="col-3 font-weight-bold">Class</p>
+        <p class="col-3 font-weight-bold">Price</p>
+        <p class="col-3 font-weight-bold">Available</p>
+        <p class="col-3 font-weight-bold">Quantity</p>
+    </div>
+    {% for type in event.ticket_types %}
+    <li class="row py-2 align-items-center" style="border-top: 1px solid lightgray">
+        <p class="col-3">{{ type.name }}</p>
+        <p class="col-3">{{"{:,d}".format(type.price)}} VND</p>
+        <p class="col-3">{{ type.get_available() }}</p>
+        <p class="col-3">
+            <input name={{type.id}} type="number" value=0 required class="form-control text-center" />
+        </p>
+    </li>
+    {% endfor %}
+    <button class="btn prim mt-4 px-5" type="submit">Submit</button>
+</form>
+{% endblock %}

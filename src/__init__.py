@@ -1,4 +1,4 @@
-
+from datetime import datetime
 import os
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
@@ -67,7 +67,7 @@ def load_user(id):
 
 @app.route('/')
 def home():
-    events = Event.query.all()
+    events = Event.query.filter(Event.time > datetime.now()).all()
     return render_template('list.html', events=events)
 
 
