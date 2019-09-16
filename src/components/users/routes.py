@@ -53,4 +53,10 @@ def sign_up():
 @login_required
 def logout():
     logout_user()
-    return 'logged out'
+    return redirect(url_for('home'))
+
+
+@users_blueprint.route('/purchases-history')
+@login_required
+def purchases_history():
+    render_template('history.html')
