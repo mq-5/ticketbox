@@ -13,17 +13,11 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 
 
-POSTGRES = {
-    'user': os.environ['PSQL_USER'],
-    'pw': os.environ['PSQL_PWD'],
-    'db': os.environ['PSQL_DB'],
-    'host': os.environ['PSQL_HOST'],
-    'port': os.environ['PSQL_PORT'],
-}
+if 'DATABASE_URL' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://quyen:123@localhost:5432/ticket'
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:\
-%(port)s/%(db)s' % POSTGRES
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Admin
