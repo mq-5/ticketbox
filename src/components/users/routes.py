@@ -60,3 +60,9 @@ def logout():
 @login_required
 def purchase_history():
     return render_template('history.html')
+
+
+@users_blueprint.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')

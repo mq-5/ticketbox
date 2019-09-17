@@ -13,8 +13,8 @@ class Users(UserMixin, db.Model):
     email = db.Column(db.String, nullable=False)
     password_hash = db.Column(db.String, nullable=False)
     is_org = db.Column(db.Boolean, nullable=False, default=False)
-    tickets = db.relationship('Ticket', backref='user',
-                              cascade="all,delete", lazy=True)
+    orders = db.relationship('Order', backref='user',
+                             cascade="all,delete", lazy=True)
     org = db.relationship('Organizer', backref='user', uselist=False,
                           cascade="all,delete", lazy=True)
 

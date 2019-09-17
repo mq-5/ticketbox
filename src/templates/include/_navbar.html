@@ -18,12 +18,13 @@
                     <a class="dropdown-item" href="#">Others</a>
                 </div>
             </li>
-            <input class="form-control mr-sm-2 ml-3" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0 sec" type="submit">Search</button>
+            <form method="POST">
+                <input class=" mr-sm-2 ml-3" type="text" name='search' placeholder="Search" aria-label="Search">
+                <a href="{{url_for('events.search') }}" class="btn my-2 my-sm-0 sec" type="submit">Search</a>
+            </form>
         </ul>
         <ul class="form-inline my-2 my-lg-0">
             {% if current_user.is_authenticated %}
-
             <div class="nav-item dropdown">
                 <a class="btn sec dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,9 +33,10 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ url_for('users.purchase_history') }}">Purchased Tickets</a>
                     {% if current_user.is_org %}
-                    <a class="dropdown-item" href="#">Organizer</a>
+                    <a class="dropdown-item"
+                        href="{{ url_for('organizers.profile', id=current_user.org.id) }}">Organizer</a>
                     {% endif %}
-                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="{{ url_for('users.profile')}}">Profile</a>
                     <a href="{{ url_for('users.logout') }}" class="dropdown-item">Log Out</a>
                 </div>
             </div>

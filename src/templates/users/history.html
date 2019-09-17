@@ -1,5 +1,18 @@
 {% extends 'monitor.html' %} {% block inside%}
-hello
+<h1 class="header">Purchase History</h1>
+<ul>
+    {% for order in current_user.orders %}
+    <li>
+        <strong>Order #{{ order.id }}: Date {{ order.created_on.strftime('%d-%m-%Y') }} - Total {{ order.total }} VND
+        </strong>
+        <ol>
+            {% for ticket in order.tickets %}
+            <li> {{ ticket.type.name }} - {{ ticket.type.price }} VND </li>
+            {% endfor %}
+        </ol>
+    </li>
+    {% endfor %}
+</ul>
 
 
 {% endblock %}

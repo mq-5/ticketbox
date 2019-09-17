@@ -4,6 +4,7 @@ from src import db
 from src.models.Event import Event
 from src.models.TicketType import TicketType
 from src.models.Ticket import Ticket
+from src.models.Order import Order
 from src.components.events.forms import NewEvent, NewTicketType
 from datetime import datetime
 # from src.components import organizers
@@ -91,13 +92,16 @@ def purchase_ticket(id):
     event = Event.query.get(int(id))
     if event is not None:
         if request.method == 'POST':
+            new_order = Order(user_id=current_user.id)
+            total = 0
             for ticket_type in event.ticket_types:
                 quantity = int(request.form[str(ticket_type.id)])
                 if quantity <= ticket_type.get_available() and quantity <= 10 and quantity >= 0:
                     for i in range(quantity):
-                        ticket = Ticket(user_id=current_user.id,
-                                        ticket_type_id=ticket_type.id)
+                        ticket = Ticket(ticket_type_id=ticket_type.id)
                         if ticket_type.is_available():
+                            new_order.tickets.append(ticket)
+                            total += ticket_type.price
                             db.session.add(ticket)
                             db.session.commit()
                         else:
@@ -106,7 +110,20 @@ def purchase_ticket(id):
                             break
                 else:
                     flash('Quantity not valid', 'danger')
+            new_order.total = total
+            db.session.add(new_order)
+            db.session.commit()
         return render_template('purchase.html', event=event)
     else:
         flash('Event not exist', 'danger')
     return redirect(url_for('home'))
+
+
+@events_blueprint.route('/search', methods=['POST', 'GET'])
+def search():
+    key = request.form['search']
+    print(key)
+    events = Event.query.filter(Event.name.ilike(
+        f'%{key}%') | Event.description.ilike(f'%{key}%')).all()
+    print(events)
+    return render_template('list.html', events=events)

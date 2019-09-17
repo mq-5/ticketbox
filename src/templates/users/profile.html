@@ -1,0 +1,8 @@
+{% extends 'monitor.html' %} {% block inside %}
+
+<h2 class="header">{{ current_user.first_name }} {{current_user.last_name}} </h2>
+<strong style="font-size: larger" class="pl-5">Email: {{ current_user.email }}</strong>
+<strong style="font-size: larger" class="pl-5">Oranization: {{ current_user.org.name or None }}</strong>
+<a href="" class="mx-5 my-5">Edit profile </a>
+
+{% endblock %}

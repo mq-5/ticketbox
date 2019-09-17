@@ -5,22 +5,24 @@
 		<div class="sidebar-sticky">
 			<ul class="nav flex-column">
 				<li class="nav-item">
-					<a class="btn prim my-3 ml-3" href=""><i class="fa fa-plus-square mr-2" aria-hidden="true"></i>Create
+					<a class="btn prim my-3 ml-3" href=""><i class="fa fa-plus-square mr-2"
+							aria-hidden="true"></i>Create
 						Event</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="">
+					<a class="nav-link" href="{{ url_for('users.purchase_history') }}">
 						Purchased Tickets <span class="sr-only">(current)</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="">Profile</a>
+					<a class="nav-link" href="{{ url_for('users.profile')}}">Profile</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="">Organizer</a>
+					<a class="nav-link" href="{{ url_for('organizers.profile', id=current_user.org.id)}}">Organizer</a>
 				</li>
 				<div class="dropdown-divider"></div>
-				<li class="nav-item"><a class="nav-link" href="/admin"> Monitor <span class="badge badge-success">Admin</span>
+				<li class="nav-item"><a class="nav-link" href="/admin"> Monitor <span
+							class="badge badge-success">Admin</span>
 					</a></li> <br />
 			</ul>
 		</div>

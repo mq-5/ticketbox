@@ -1,0 +1,18 @@
+{% extends 'monitor.html' %} {% block inside %}
+
+<h2 class="header">{{ org.name }} </h2>
+<p class="pl-3">Description: {{ org.description }}</p>
+<div class="p-3">
+
+    <img src={{org.image_url}} alt="" style="max-height: 300px" />
+</div>
+<a href="" class="mx-3 my-5">Edit profile </a>
+<h4 class="header">Events</h4>
+<ul>
+    {% for event in org.events %}
+    <li>{{ event.name }} - #{{ event.id }}
+        <a href=""><i class="mx-2 fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a> </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

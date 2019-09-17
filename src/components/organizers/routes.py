@@ -38,20 +38,7 @@ def register_organizer(id):
         return redirect(url_for('home'))
 
 
-# @organizers_blueprint.route('/login', methods=['POST', 'GET'])
-# def login_org():
-#     logout_user()
-#     form = LogInOrg()
-#     if request.method == 'POST':
-#         if form.validate_on_submit():
-#             org = Organizer.query.filter_by(email=form.email.data).first()
-#             if org and org.check_password(form.password.data):
-#                 login_user(org, 'org')
-#                 print(current_user, current_user.is_org)
-#                 flash('Login successful')
-#                 return f'hello {current_user.company_name}'
-#             else:
-#                 flash('Incorrect email or password')
-#         for field_name, errors in form.errors.items():
-#             flash(errors[0])
-#     return render_template('log_ino.html', form=form)
+@organizers_blueprint.route('/profile/<id>')
+def profile(id):
+    org = Organizer.query.get(id)
+    return render_template('profile_org.html', org=org)

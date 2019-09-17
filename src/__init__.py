@@ -44,7 +44,8 @@ from src.models.Event import Event  # noqa
 from src.models.Organizer import Organizer  # noqa
 from src.models.TicketType import TicketType  # noqa
 from src.models.Ticket import Ticket  # noqa
-
+from src.models.Order import Order  # noqa
+db.create_all()
 
 login.login_view = 'users.login_u'
 
@@ -53,6 +54,7 @@ admin.add_view(ModelView(Event, db.session))
 admin.add_view(ModelView(Organizer, db.session))
 admin.add_view(ModelView(TicketType, db.session))
 admin.add_view(ModelView(Ticket, db.session))
+admin.add_view(ModelView(Order, db.session))
 
 
 @login.user_loader
@@ -64,8 +66,3 @@ def load_user(id):
 def home():
     events = Event.query.filter(Event.time > datetime.now()).all()
     return render_template('list.html', events=events)
-
-
-@app.route('/cur')
-def cur():
-    return f'CURRENT {current_user.email}' if current_user.is_active else 'None'
