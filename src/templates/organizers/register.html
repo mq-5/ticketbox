@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="header" >Register</h1>
-<form method="POST" class='new'>
+<h1 class="header">Register</h1>
+<form method="POST" class='new container'>
     {{ form.hidden_tag() }}
     {{form.company.label}} {{ form.company(class_='form-control') }}
     {{form.description.label}} {{ form.description(class_='form-control') }}

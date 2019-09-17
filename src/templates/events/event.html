@@ -1,66 +1,69 @@
 {% extends 'base.html' %} {% block content%}
-<div style="max-height: 600px; overflow: hidden;">
-    <img src={{event.image_url}} style="width: 100%;" alt="">
-
+<div id="cover" style="background-image: url({{event.image_url}})">
 </div>
-<h3 class="my-4">{{ event.name }}</h3>
-<hr>
-<div class="d-flex">
-    <div>
-        <nav>
-            <div class="nav nav-pills" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link  active" id="nav-description-tab" data-toggle="tab" href="#nav-description"
-                    role="tab" aria-controls="nav-description" aria-selected="true">Description</a>
-                <a class="nav-item nav-link " id="nav-organizer-tab" data-toggle="tab" href="#nav-organizer" role="tab"
-                    aria-controls="nav-organizer" aria-selected="false">Organizer</a>
-                <a class="nav-item nav-link " id="nav-tickets-tab" data-toggle="tab" href="#nav-tickets" role="tab"
-                    aria-controls="nav-tickets" aria-selected="false">Tickets</a>
-            </div>
-        </nav>
-        <div class="tab-content card mt-4" id="nav-tabContent">
-            <div class="tab-pane fade show active card-body" id="nav-description" role="tabpanel"
-                aria-labelledby="nav-description-tab">
-                <p class="card-text">{{ event.description | safe }}</p>
-            </div>
-            <div class="tab-pane fade card-body" id="nav-organizer" role="tabpanel" aria-labelledby="nav-organizer-tab">
-                <h4>{{ event.organizer.name}}</h4>
-                <p>{{ event.organizer.description }}</p>
-                <img src={{event.organizer.image_url}} alt="" class="mt-3">
-            </div>
-            <div class="tab-pane fade card-body text-center" id="nav-tickets" role="tabpanel"
-                aria-labelledby="nav-tickets-tab">
-                <ul class="list-group list-group-flush">
-                    <div class="row my-2 ">
-                        <p class="col-4 font-weight-bold">Class</p>
-                        <p class="col-4 font-weight-bold">Price</p>
-                        <p class="col-4 font-weight-bold">Available</p>
-                    </div>
-                    {% for type in event.ticket_types %}
-                    <li class="row py-2 align-items-center" style="border-top: 1px solid lightgray">
-                        <p class="col-4">{{ type.name }}</p>
-                        <p class="col-4">{{"{:,d}".format(type.price)}} VND</p>
-                        <p class="col-4">{{ type.get_available() }}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a class="btn prim mt-3" href="{{ url_for('events.purchase_ticket', id=event.id ) }}">Buy Tickets</a>
+<div class="container">
+    <h3 class="my-4">{{ event.name }}</h3>
+    <hr>
+    <div class="d-flex">
+        <div>
+            <nav>
+                <div class="nav nav-pills" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link  active" id="nav-description-tab" data-toggle="tab"
+                        href="#nav-description" role="tab" aria-controls="nav-description"
+                        aria-selected="true">Description</a>
+                    <a class="nav-item nav-link " id="nav-organizer-tab" data-toggle="tab" href="#nav-organizer"
+                        role="tab" aria-controls="nav-organizer" aria-selected="false">Organizer</a>
+                    <a class="nav-item nav-link " id="nav-tickets-tab" data-toggle="tab" href="#nav-tickets" role="tab"
+                        aria-controls="nav-tickets" aria-selected="false">Tickets</a>
+                </div>
+            </nav>
+            <div class="tab-content card mt-4" id="nav-tabContent">
+                <div class="tab-pane fade show active card-body" id="nav-description" role="tabpanel"
+                    aria-labelledby="nav-description-tab">
+                    <p class="card-text">{{ event.description | safe }}</p>
+                </div>
+                <div class="tab-pane fade card-body" id="nav-organizer" role="tabpanel"
+                    aria-labelledby="nav-organizer-tab">
+                    <h4>{{ event.organizer.name}}</h4>
+                    <p>{{ event.organizer.description }}</p>
+                    <img src={{event.organizer.image_url}} alt="" class="mt-3">
+                </div>
+                <div class="tab-pane fade card-body text-center" id="nav-tickets" role="tabpanel"
+                    aria-labelledby="nav-tickets-tab">
+                    <ul class="list-group list-group-flush">
+                        <div class="row my-2 ">
+                            <p class="col-4 font-weight-bold">Class</p>
+                            <p class="col-4 font-weight-bold">Price</p>
+                            <p class="col-4 font-weight-bold">Available</p>
+                        </div>
+                        {% for type in event.ticket_types %}
+                        <li class="row py-2 align-items-center" style="border-top: 1px solid lightgray">
+                            <p class="col-4">{{ type.name }}</p>
+                            <p class="col-4">{{"{:,d}".format(type.price)}} VND</p>
+                            <p class="col-4">{{ type.get_available() }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a class="btn prim mt-3" href="{{ url_for('events.purchase_ticket', id=event.id ) }}">Buy
+                        Tickets</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="ml-auto" style="max-width: 230px">
-        <div class="text-center my-3 calendar ">
-            <p style="background-color: tomato; width: 100%; font-size: 14px; color: white">
-                {{ event.time.strftime("%B")}}</p>
-            <p style="font-size: 20px; margin: 0"> {{ event.time.strftime("%d")}}</p>
-            <p style="font-size: 12px;"> {{ event.time.strftime("%A")}}</p>
-        </div>
-        <h6><i class="fa fa-clock-o" aria-hidden="true"> </i>
-            {{event.time.strftime('%A %d, %B %Y at %H:%M %p') }}
-        </h6>
-        <h6><i class="fa fa-map-marker" aria-hidden="true"></i>
-            {{ event.venue_city }}</h6>
-        <p class="text-muted mb-3">{{ event.venue_address }} </p>
+        <div class="ml-auto" style="max-width: 230px">
+            <div class="text-center my-3 calendar ">
+                <p style="background-color: tomato; width: 100%; font-size: 14px; color: white">
+                    {{ event.time.strftime("%B")}}</p>
+                <p style="font-size: 20px; margin: 0"> {{ event.time.strftime("%d")}}</p>
+                <p style="font-size: 12px;"> {{ event.time.strftime("%A")}}</p>
+            </div>
+            <h6><i class="fa fa-clock-o" aria-hidden="true"> </i>
+                {{event.time.strftime('%A %d, %B %Y at %H:%M %p') }}
+            </h6>
+            <h6><i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{ event.venue_city }}</h6>
+            <p class="text-muted mb-3">{{ event.venue_address }} </p>
 
+        </div>
     </div>
 </div>
 

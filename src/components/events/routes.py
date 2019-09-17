@@ -107,7 +107,6 @@ def purchase_ticket(id):
                 else:
                     flash('Quantity not valid', 'danger')
         return render_template('purchase.html', event=event)
-        # return redirect(url_for('events.view', id=ticket_type.event.id))
     else:
         flash('Event not exist', 'danger')
     return redirect(url_for('home'))

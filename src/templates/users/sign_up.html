@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="header" >Sign Up</h1>
-<form method="POST" class="new">
+<h1 class="header">Sign Up</h1>
+<form method="POST" class="new container">
     {{ form.hidden_tag() }}
     {{form.first_name.label}} {{ form.first_name(class_='form-control') }}
     {{form.last_name.label}} {{ form.last_name(class_='form-control') }}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content%}
+<div class="row">
+	<nav class="col-lg-2 col-md-3 d-none d-md-block sidebar py-5"
+		style="background-color: #172D35; height: calc(100vh - 56px);">
+		<div class="sidebar-sticky">
+			<ul class="nav flex-column">
+				<li class="nav-item">
+					<a class="btn prim my-3 ml-3" href=""><i class="fa fa-plus-square mr-2" aria-hidden="true"></i>Create
+						Event</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">
+						Purchased Tickets <span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">Organizer</a>
+				</li>
+				<div class="dropdown-divider"></div>
+				<li class="nav-item"><a class="nav-link" href="/admin"> Monitor <span class="badge badge-success">Admin</span>
+					</a></li> <br />
+			</ul>
+		</div>
+	</nav>
+	<div class="col-lg-10 col-md-9">
+		{% block inside %}
+		{% endblock %}
+	</div>
+</div>
+{% endblock %}

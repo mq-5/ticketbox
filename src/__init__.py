@@ -10,16 +10,16 @@ from flask_admin.contrib.sqla import ModelView
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'secret'
-
 
 if 'DATABASE_URL' in os.environ:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://quyen:123@localhost:5432/ticket'
 
+app.config['SECRET_KEY'] = 'secret'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # Admin
 app.config['FLASK_ADMIN_SWATCH'] = 'Flatly'
 admin = Admin(app, name='Ticketbox', template_mode='bootstrap3')

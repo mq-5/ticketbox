@@ -17,7 +17,7 @@ def login_u():
             if user and user.check_password(form.password.data):
                 login_user(user)
                 flash('Login successful')
-                return f'hello {current_user.first_name}'
+                return redirect(url_for('home'))
             else:
                 flash('Incorrect email or password')
         for field_name, errors in form.errors.items():
@@ -42,7 +42,7 @@ def sign_up():
             if form.is_org.data:
                 return redirect(url_for('organizers.register_organizer', id=new_user.id))
             flash('Successfully registered')
-            return redirect(url_for('home'))
+            return redirect(url_for('users.login_u'))
         else:
             for field, err in form.errors.items():
                 flash(err[0], 'danger')
@@ -56,7 +56,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@users_blueprint.route('/purchases-history')
+@users_blueprint.route('/purchase-history')
 @login_required
-def purchases_history():
-    render_template('history.html')
+def purchase_history():
+    return render_template('history.html')

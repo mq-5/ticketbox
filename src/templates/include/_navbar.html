@@ -30,7 +30,7 @@
                     {{ current_user.first_name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Purchased Tickets</a>
+                    <a class="dropdown-item" href="{{ url_for('users.purchase_history') }}">Purchased Tickets</a>
                     {% if current_user.is_org %}
                     <a class="dropdown-item" href="#">Organizer</a>
                     {% endif %}

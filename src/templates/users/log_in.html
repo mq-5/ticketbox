@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="header" >User Log In</h1>
-<form method="POST" class='new'>
+<h1 class="header">User Log In</h1>
+<form method="POST" class='new container'>
     {{ form.hidden_tag() }}
     {{form.email.label}} {{ form.email(class_='form-control') }}
     {{form.password.label}} {{ form.password(class_='form-control') }}

@@ -20,11 +20,8 @@ nav * {
     color: white;
 }
 
-.new .btn,
-.new button {
-    background-color: #326273 !important;
-    color: white !important;
-    margin-top: 1rem;
+.container {
+    margin: auto;
 }
 
 .header {
@@ -58,27 +55,36 @@ button.sec:hover {
 }
 
 
+.sidebar a {
+    color: white;
+    text-transform: capitalize;
+    font-size: larger;
+}
+
+.sidebar a:hover {
+    color: #97B8BF;
+}
+
 form.new {
     width: 50%;
     margin: auto;
+}
+
+.new .btn,
+.new button {
+    background-color: #326273 !important;
+    color: white !important;
+    margin-top: 1rem;
 }
 
 .new .form-control {
     margin-bottom: 1rem;
 }
 
-.container {
-    margin: auto;
-}
-
 #events {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-#events li {
-    /* max-height: 20rem; */
 }
 
 #events img {
@@ -92,6 +98,13 @@ form.new {
     border-radius: 10%;
     height: 90px;
     width: 86px;
+}
+
+#cover {
+    height: 600px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
 }
 
 #nav-description,
