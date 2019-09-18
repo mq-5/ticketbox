@@ -1,4 +1,8 @@
 
+## Demo
+
+The page can be found [here](https://tickets-hunter.herokuapp.com)
+
 ## User Stories
 
 The following **required** functionality is complete:
@@ -11,16 +15,16 @@ The following **required** functionality is complete:
         * Implement `/upcoming` route test to go to 'events#index'
         * Implement `Event.upcoming` class method (with a test)
         * Implement `EventsController#index` action test
-* [ ] Users can search for events from the homepage.
+* [x] Users can search for events from the homepage.
 * [x] Users can click on an event to see details about the event.
-* [ ] Users can click on "Book Now" to go to a page to purchase tickets.
+* [x] Users can click on "Book Now" to go to a page to purchase tickets.
 
 #### Tickets
 
 * [x] Each event can have multiple types of tickets, each with a different `price` and `max_quantity`.
-* [ ] Users can buy tickets to an event, choose the types of tickets, and the quantity of tickets.
+* [x] Users can buy tickets to an event, choose the types of tickets, and the quantity of tickets.
 * [x] Users cannot buy more tickets than the quantity available.
-* [ ] Users can only buy up to 10 of a ticket type at a time. Show a nice flash message.
+* [x] Users can only buy up to 10 of a ticket type at a time. Show a nice flash message.
 
 #### Users
 
@@ -37,7 +41,7 @@ The following **required** functionality is complete:
 * [x] Users can create venues.
 * [ ] An event must have at least one `ticket_type` defined before it can be published.
     * **HINT**: add `Event#have_enough_ticket_types?` (and test it)
-* [ ] User can see a list of events he or she has created.
+* [x] User can see a list of events he or she has created.
     * Suggestions
         * You can use `/events/mine` [collection routes](http://guides.rubyonrails.org/routing.html#adding-more-restful-actions)
 * [ ] Users can edit their event after creation. But only the user who created the event can edit the event.

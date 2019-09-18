@@ -124,6 +124,6 @@ def search():
     key = request.form['search']
     print(key)
     events = Event.query.filter(Event.name.ilike(
-        f'%{key}%') | Event.description.ilike(f'%{key}%')).all()
+        f'% {key}%') | Event.description.ilike(f'% {key}%')).all()
     print(events)
     return render_template('list.html', events=events)
