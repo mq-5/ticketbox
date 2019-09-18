@@ -45,7 +45,6 @@ from src.models.Organizer import Organizer  # noqa
 from src.models.TicketType import TicketType  # noqa
 from src.models.Ticket import Ticket  # noqa
 from src.models.Order import Order  # noqa
-db.create_all()
 
 login.login_view = 'users.login_u'
 
